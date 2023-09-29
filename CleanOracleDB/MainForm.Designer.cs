@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             btnRefresh = new Button();
             dgvList = new DataGridView();
             btnCleanDB = new Button();
@@ -186,6 +187,7 @@
             Controls.Add(btnCleanDB);
             Controls.Add(dgvList);
             Controls.Add(btnRefresh);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clean Oracle DB";
