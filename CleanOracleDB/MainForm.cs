@@ -1,6 +1,7 @@
 using CleanOracleDB.Classes;
 using CleanOracleDB.DAL;
 using log4net;
+using System.Reflection;
 
 namespace CleanOracleDB
 {
@@ -64,6 +65,7 @@ namespace CleanOracleDB
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Text += $" - v{Assembly.GetExecutingAssembly().GetName().Version}";
             InitDatagrid();
         }
 
