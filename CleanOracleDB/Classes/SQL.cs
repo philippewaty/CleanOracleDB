@@ -10,14 +10,9 @@
         {
             string sql = "SELECT table_name"
             + " FROM user_unused_col_tabs"
-            + " WHERE table_name not like 'BIN$%==$0'" //On ne prend pas les tables de la RECYLCE BIN
+            + " WHERE table_name not like 'BIN$%==$0'" //We don't take tables from RECYLCE BIN
             + " ORDER BY table_name";
 
-            /*
-              SELECT table_name, column_name, data_type, data_length, char_length, data_default, hidden_column 
-              FROM user_tab_cols 
-              WHERE hidden_column='YES';
-             */
             return sql;
         }
 

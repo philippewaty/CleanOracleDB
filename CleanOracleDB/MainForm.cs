@@ -118,13 +118,13 @@ namespace CleanOracleDB
             {
                 if (row.Cells[Settings.COL_CHECKED].Value != null && (int)row.Cells[Settings.COL_CHECKED].Value == 1)
                 {
-                    lblProgess.Text = $"Suppression des colonnes dans {row.Cells[Settings.COL_TABLENAME].Value.ToString()}";
+                    lblProgess.Text = $"Delete columns in {row.Cells[Settings.COL_TABLENAME].Value.ToString()}";
                     log.Debug(SQL.GetDropColumnSQL(row.Cells[Settings.COL_TABLENAME].Value.ToString()));
-                    //*** Vérifie le nombre de ligne
+                    //*** Check row number
                     if (((long)row.Cells[Settings.COL_ROWCOUNT].Value) >= Properties.Settings.Default.MAXLINES_ALERT)
                     {
-                        string message = $"La table {row.Cells[Settings.COL_TABLENAME].Value} fait plus de {Properties.Settings.Default.MAXLINES_ALERT} lignes." + Environment.NewLine
-                        + "Voulez-vous dropper les colonnes non utilisées de cette table ? (cela risque de prendre du temps).";
+                        string message = $"The table {row.Cells[Settings.COL_TABLENAME].Value} has more than {Properties.Settings.Default.MAXLINES_ALERT} lines." + Environment.NewLine
+                        + "Do you want to drop unused columns from this table? (this may take some time).";
                         if (MessageBox.Show(message, System.AppDomain.CurrentDomain.FriendlyName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         {
                             break;
@@ -146,7 +146,7 @@ namespace CleanOracleDB
                 }
             }
             RefreshList();
-            lblProgess.Text = "Colonnes supprimées";
+            lblProgess.Text = "Columns deleted";
             progressBar1.Value = nbChecked;
         }
 
@@ -156,7 +156,7 @@ namespace CleanOracleDB
             {
                 Cursor.Current = Cursors.WaitCursor;
                 ConnectionManager.TestConnection();
-                MessageBox.Show("Connexion réussie", System.AppDomain.CurrentDomain.FriendlyName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Connection successful", System.AppDomain.CurrentDomain.FriendlyName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

@@ -76,7 +76,7 @@
             btnCleanDB.Name = "btnCleanDB";
             btnCleanDB.Size = new Size(42, 42);
             btnCleanDB.TabIndex = 2;
-            toolTip1.SetToolTip(btnCleanDB, "Supprimer les colonnes sélectionnées");
+            toolTip1.SetToolTip(btnCleanDB, "Delete selected columns");
             btnCleanDB.UseVisualStyleBackColor = true;
             btnCleanDB.Click += btnCleanDB_Click;
             // 
@@ -87,7 +87,7 @@
             btnTestConnection.Name = "btnTestConnection";
             btnTestConnection.Size = new Size(42, 42);
             btnTestConnection.TabIndex = 6;
-            toolTip1.SetToolTip(btnTestConnection, "Tester la connexion");
+            toolTip1.SetToolTip(btnTestConnection, "Test connection");
             btnTestConnection.UseVisualStyleBackColor = true;
             btnTestConnection.Click += btnTestConnection_Click;
             // 
@@ -105,7 +105,7 @@
             grpDatabase.Size = new Size(434, 82);
             grpDatabase.TabIndex = 0;
             grpDatabase.TabStop = false;
-            grpDatabase.Text = "Base de données";
+            grpDatabase.Text = "Database";
             // 
             // txtDBPassword
             // 
@@ -120,9 +120,9 @@
             lblDBPassword.AutoSize = true;
             lblDBPassword.Location = new Point(169, 49);
             lblDBPassword.Name = "lblDBPassword";
-            lblDBPassword.Size = new Size(98, 15);
+            lblDBPassword.Size = new Size(78, 15);
             lblDBPassword.TabIndex = 4;
-            lblDBPassword.Text = "Mot de passe DB:";
+            lblDBPassword.Text = "DB password:";
             // 
             // txtDBUser
             // 
@@ -137,9 +137,9 @@
             lblDBUser.AutoSize = true;
             lblDBUser.Location = new Point(6, 49);
             lblDBUser.Name = "lblDBUser";
-            lblDBUser.Size = new Size(51, 15);
+            lblDBUser.Size = new Size(50, 15);
             lblDBUser.TabIndex = 2;
-            lblDBUser.Text = "User DB:";
+            lblDBUser.Text = "DB user:";
             // 
             // txtTNS
             // 
