@@ -34,7 +34,7 @@ namespace CleanOracleDB.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("500000")]
         public long MAXLINES_ALERT {
             get {
                 return ((long)(this["MAXLINES_ALERT"]));
