@@ -50,8 +50,12 @@ namespace CleanOracleDB.DAL
             {
                 using (var connection = ConnectionManager.GetConnection())
                 {
+                    var watch = System.Diagnostics.Stopwatch.StartNew();
+                    log.Info($"Start drop column");
                     log.Debug(sql);
                     connection.Execute(sql);
+                    watch.Stop();
+                    log.Info($"End drop column : {watch.Elapsed.ToString(@"m\:ss\.fff")}");
                     connection.Close();
                 }
             }
