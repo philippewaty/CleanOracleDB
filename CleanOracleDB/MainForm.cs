@@ -66,6 +66,7 @@ namespace CleanOracleDB
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.Text += $" - v{Assembly.GetExecutingAssembly().GetName().Version}";
+            log.Debug(this.Text);
             InitDatagrid();
         }
 
