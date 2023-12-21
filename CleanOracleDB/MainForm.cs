@@ -134,10 +134,13 @@ namespace CleanOracleDB
                     string sql = row.Cells[Settings.COL_SQL].Value.ToString();
                     try
                     {
+                        log.Info($"Drop column for table {row.Cells[Settings.COL_TABLENAME].Value} with {row.Cells[Settings.COL_ROWCOUNT].Value.ToString()} rows started");
                         Data.DropColumn(sql);
+                        log.Info($"Drop column for table {row.Cells[Settings.COL_TABLENAME].Value} finished");
                     }
                     catch (Exception ex)
                     {
+                        log.Error(ex);
                         Program.DisplayErrorMessage(ex);
                         throw;
                     }
