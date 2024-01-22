@@ -26,6 +26,7 @@ namespace CleanOracleDB.DAL
                     {
                         log.Debug(SQL.GetRowCount(column.Table_Name));
                         column.RowCount = connection.ExecuteScalar<long>(SQL.GetRowCount(column.Table_Name));
+                        log.Debug(column.RowCount.ToString("#,##0"));
                         column.DropSQL = SQL.GetDropColumnSQL(column.Table_Name);
                     }
                     connection.Close();

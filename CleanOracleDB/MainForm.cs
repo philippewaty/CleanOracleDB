@@ -46,7 +46,11 @@ namespace CleanOracleDB
                 HeaderText = "Row count",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true,
-                DataPropertyName = "RowCount"
+                DataPropertyName = "RowCount",
+                DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    Format = "#,##0"
+                }
             };
             dgvList.Columns.Add(column);
 
@@ -228,5 +232,6 @@ namespace CleanOracleDB
                 Cursor.Current = Cursors.Default;
             }
         }
+
     }
 }
