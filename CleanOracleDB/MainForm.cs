@@ -85,11 +85,15 @@ namespace CleanOracleDB
 
                 lblProgess.Text = "";
                 progressBar1.Value = 0;
+                btnCalcDBSizeBefore.Enabled = false;
+                btnCalcDBSizeAfter.Enabled = false;
                 btnCleanDB.Enabled = false;
                 Cursor.Current = Cursors.WaitCursor;
                 List<Modele.Tables> tablesList = Data.GetUnusedColumns();
                 FillDataGridView(tablesList);
                 btnCleanDB.Enabled = true;
+                btnCalcDBSizeBefore.Enabled = true;
+                btnCalcDBSizeAfter.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -185,6 +189,44 @@ namespace CleanOracleDB
         private void txtDBPassword_TextChanged(object sender, EventArgs e)
         {
             Settings.DBPassword = txtDBPassword.Text;
+        }
+
+        private void btnCalcDBSizeBefore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                string result = Data.GetOracleDatabaseSize("Calculate database size before");
+                MessageBox.Show(result, System.AppDomain.CurrentDomain.FriendlyName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                Program.DisplayErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private void btnCalcDBSizeAfter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                string result = Data.GetOracleDatabaseSize("Calculate database size after");
+                MessageBox.Show(result, System.AppDomain.CurrentDomain.FriendlyName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                Program.DisplayErrorMessage(ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
     }
 }

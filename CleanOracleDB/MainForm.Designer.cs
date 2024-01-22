@@ -35,6 +35,8 @@
             btnCleanDB = new Button();
             toolTip1 = new ToolTip(components);
             btnTestConnection = new Button();
+            btnCalcDBSizeBefore = new Button();
+            btnCalcDBSizeAfter = new Button();
             grpDatabase = new GroupBox();
             txtDBPassword = new TextBox();
             lblDBPassword = new Label();
@@ -72,7 +74,7 @@
             // 
             btnCleanDB.Enabled = false;
             btnCleanDB.Image = Properties.Resources.db_remove;
-            btnCleanDB.Location = new Point(60, 100);
+            btnCleanDB.Location = new Point(108, 100);
             btnCleanDB.Name = "btnCleanDB";
             btnCleanDB.Size = new Size(42, 42);
             btnCleanDB.TabIndex = 2;
@@ -90,6 +92,30 @@
             toolTip1.SetToolTip(btnTestConnection, "Test connection");
             btnTestConnection.UseVisualStyleBackColor = true;
             btnTestConnection.Click += btnTestConnection_Click;
+            // 
+            // btnCalcDBSizeBefore
+            // 
+            btnCalcDBSizeBefore.Enabled = false;
+            btnCalcDBSizeBefore.Image = Properties.Resources.calc;
+            btnCalcDBSizeBefore.Location = new Point(60, 100);
+            btnCalcDBSizeBefore.Name = "btnCalcDBSizeBefore";
+            btnCalcDBSizeBefore.Size = new Size(42, 42);
+            btnCalcDBSizeBefore.TabIndex = 6;
+            toolTip1.SetToolTip(btnCalcDBSizeBefore, "Calculate dabatase size before");
+            btnCalcDBSizeBefore.UseVisualStyleBackColor = true;
+            btnCalcDBSizeBefore.Click += btnCalcDBSizeBefore_Click;
+            // 
+            // btnCalcDBSizeAfter
+            // 
+            btnCalcDBSizeAfter.Enabled = false;
+            btnCalcDBSizeAfter.Image = Properties.Resources.calc;
+            btnCalcDBSizeAfter.Location = new Point(156, 100);
+            btnCalcDBSizeAfter.Name = "btnCalcDBSizeAfter";
+            btnCalcDBSizeAfter.Size = new Size(42, 42);
+            btnCalcDBSizeAfter.TabIndex = 7;
+            toolTip1.SetToolTip(btnCalcDBSizeAfter, "Calculate dabatase size after");
+            btnCalcDBSizeAfter.UseVisualStyleBackColor = true;
+            btnCalcDBSizeAfter.Click += btnCalcDBSizeAfter_Click;
             // 
             // grpDatabase
             // 
@@ -181,6 +207,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(991, 476);
+            Controls.Add(btnCalcDBSizeAfter);
+            Controls.Add(btnCalcDBSizeBefore);
             Controls.Add(progressBar1);
             Controls.Add(lblProgess);
             Controls.Add(grpDatabase);
@@ -215,5 +243,7 @@
         private Button btnTestConnection;
         private Label lblProgess;
         private ProgressBar progressBar1;
+        private Button btnCalcDBSizeBefore;
+        private Button btnCalcDBSizeAfter;
     }
 }

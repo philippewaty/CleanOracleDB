@@ -1,6 +1,7 @@
 ﻿using CleanOracleDB.Classes;
 using Dapper;
 using log4net;
+using System.Text;
 
 namespace CleanOracleDB.DAL
 {
@@ -65,6 +66,28 @@ namespace CleanOracleDB.DAL
                 throw;
             }
             return true;
+        }
+
+        public static string GetOracleDatabaseSize(string action)
+        {
+            StringBuilder builder = new StringBuilder();
+            log.Info(action);
+            builder.AppendLine(action);
+            using (var connection = ConnectionManager.GetConnection())
+            {
+                string sql = SQL.GetOracleDatabaseSize();
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                log.Debug(sql);
+                List<DatabaseSize> databaseSizes = connection.Query<DatabaseSize>(sql).ToList();
+                foreach (var databaseSize in databaseSizes) 
+                {
+                    string value = $"TableSpace : {databaseSize.TableSpace}, Total space : {databaseSize.Total_Space_MB}, User space : {databaseSize.Used_Space_MB}, Free space : {databaseSize.Free_Space_MB}, Pourcentage free : {databaseSize.Pct_Free}";
+                    log.Info(value);
+                    builder.AppendLine(value);
+                }
+                connection.Close();
+            }
+            return builder.ToString();
         }
     }
 }
