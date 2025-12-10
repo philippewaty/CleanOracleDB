@@ -1,5 +1,6 @@
 using log4net;
 using System.Reflection;
+using TnsNamesResolver.Services.Wrappers;
 
 namespace CleanOracleDB
 {
@@ -25,12 +26,37 @@ namespace CleanOracleDB
             var logfile = new FileInfo(@"log4net.config");
             log4net.Config.XmlConfigurator.ConfigureAndWatch(logfile);
 
+            TNSNameResolver.TNSNameResolver tnsNameResolver = new TNSNameResolver.TNSNameResolver();
+            if ((!string.IsNullOrEmpty(tnsNameResolver.getLdapAdmin)))
+            {
+                //*** Vérifie l'emplacement LDAP du tnsnames.ora
+                Environment.SetEnvironmentVariable("TNS_ADMIN", tnsNameResolver.getLdapAdmin);
+
+            }
+            else if ((!string.IsNullOrEmpty(tnsNameResolver.getTNS)))
+            {
+                //*** Vérifie l'emplacement fichier du tnsnames.ora
+                Environment.SetEnvironmentVariable("TNS_ADMIN", tnsNameResolver.getTNS);
+
+            }
+            else
+            {
+                //*** Si aucun des 2 n'est trouvé, on cherche dans le fichier config.ini les valeurs
+                TnsNamesResolver.Services.Wrappers.IniWrapper iniWrapper = new TnsNamesResolver.Services.Wrappers.IniWrapper();
+                TnsNamesResolver.Services.Resolvers.TnsAdminIniResolver tnsAdminIniResolver = new TnsNamesResolver.Services.Resolvers.TnsAdminIniResolver(iniWrapper);
+                tnsAdminIniResolver.iniFileName = "config.ini";
+                tnsAdminIniResolver.iniSection = "TNS_ADMIN";
+                tnsAdminIniResolver.iniKey = "TNS_PATH";
+                string TNS_ADMIN = tnsAdminIniResolver.GetTnsAdmin();
+                if (!string.IsNullOrEmpty(TNS_ADMIN))
+                {
+                    Environment.SetEnvironmentVariable("TNS_ADMIN", TNS_ADMIN);
+                }
+            }
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
-            TNSNameResolver.TNSNameResolver tnsNameResolver = new TNSNameResolver.TNSNameResolver();
-
             Application.Run(new MainForm());
         }
 
